@@ -11,7 +11,7 @@ profile:
     <p>Huxley Building</p>
     <p>South Kensington Campus</p>
     <p>London, United Kingdom</p>
-nav: true
+nav: false
 nav_order: 1
 selected_papers: false
 social: true
