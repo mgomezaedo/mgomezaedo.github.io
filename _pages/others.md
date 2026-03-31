@@ -13,25 +13,7 @@ nav_order: 6
 
 My favourite artist. Here is my personal ranking — subject to change without notice.
 
-| # | Song | Album | YouTube |
-|---|------|-------|---------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
-| 11 | | | |
-| 12 | | | |
-| 13 | | | |
-| 14 | | | |
-| 15 | | | |
-| 16 | | | |
-| 17 | | | |
+_List coming soon._
 
 ---
 
