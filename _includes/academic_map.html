@@ -2,41 +2,22 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <style>
-  #academic-map {
-    height: 420px;
-    width: 100%;
-    border-radius: 8px;
-    margin: 1rem 0;
-    border: 1px solid #444;
-  }
-  .map-section {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid #333;
-  }
-  .map-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 8px;
-    font-size: 0.85rem;
-  }
-  .map-legend-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .legend-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-    border: 2px solid #fff;
-    box-shadow: 0 0 3px rgba(0,0,0,0.3);
-  }
+  #academic-map { height: 420px; width: 100%; border-radius: 8px; margin: 0.5rem 0; border: 1px solid #444; }
+  .map-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #333; }
+  .map-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; font-size: 0.85rem; }
+  .map-legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 2px solid #fff; box-shadow: 0 0 3px rgba(0,0,0,0.3); }
+  .zoom-btn { padding: 5px 14px; border-radius: 4px; border: 1px solid #555; background: transparent; color: #ccc; font-size: 13px; cursor: pointer; }
+  .zoom-btn.active { background: #333; border-color: #888; color: #fff; font-weight: 600; }
 </style>
 
 <div class="map-section">
+
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+  <button class="zoom-btn active" id="btn-all" onclick="zoomTo('all')">All</button>
+  <button class="zoom-btn" id="btn-europe" onclick="zoomTo('europe')">Europe</button>
+  <button class="zoom-btn" id="btn-sa" onclick="zoomTo('sa')">South America</button>
+</div>
 
 <div class="map-legend">
   <div class="map-legend-item"><span class="legend-dot" style="background:#2563eb;"></span> Education &amp; work</div>
@@ -52,17 +33,31 @@
 </div>
 
 <script>
+var map;
+var views = {
+  all: { center: [20,-10], zoom: 2 },
+  europe: { center: [50, 5], zoom: 4 },
+  sa: { center: [-33, -68], zoom: 4 }
+};
+
+function zoomTo(region) {
+  var v = views[region];
+  map.flyTo(v.center, v.zoom, { duration: 1.2 });
+  document.querySelectorAll('.zoom-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('btn-' + region).classList.add('active');
+}
+
 document.addEventListener("DOMContentLoaded", function(){
-  var map = L.map('academic-map', {center:[20,-10], zoom:2, scrollWheelZoom:false});
+  map = L.map('academic-map', { center: [20,-10], zoom: 2, scrollWheelZoom: false });
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:18
+    attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 18
   }).addTo(map);
 
-  function ic(c){
+  function ic(c) {
     return L.divIcon({
-      className:'',
-      html:'<div style="background:'+c+';width:13px;height:13px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>',
-      iconSize:[13,13], iconAnchor:[6,6], popupAnchor:[0,-9]
+      className: '',
+      html: '<div style="background:'+c+';width:13px;height:13px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>',
+      iconSize: [13,13], iconAnchor: [6,6], popupAnchor: [0,-9]
     });
   }
 
@@ -83,17 +78,13 @@ document.addEventListener("DOMContentLoaded", function(){
   ];
 
   var types = {};
-  types[B] = 'Education & work';
-  types[R] = 'Talk';
-  types[Y] = 'Poster';
-  types[G] = 'Workshop';
-  types[P] = 'Visit';
-  types[U] = 'Upcoming';
+  types[B] = 'Education & work'; types[R] = 'Talk'; types[Y] = 'Poster';
+  types[G] = 'Workshop'; types[P] = 'Visit'; types[U] = 'Upcoming';
 
-  locs.forEach(function(d){
+  locs.forEach(function(d) {
     var badge = '<span style="display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600;color:#fff;background:'+d[2]+';margin-bottom:3px;">'+types[d[2]]+'</span>';
     var html = badge+'<br><strong style="font-size:13px;">'+d[3]+'</strong><br><span style="font-size:12px;color:#999;">'+d[4]+'</span>'+(d[5]?'<br><span style="font-size:12px;color:#bbb;">'+d[5]+'</span>':'');
-    L.marker([d[0],d[1]], {icon:ic(d[2])}).addTo(map).bindPopup(html, {maxWidth:220});
+    L.marker([d[0],d[1]], {icon: ic(d[2])}).addTo(map).bindPopup(html, {maxWidth: 220});
   });
 });
 </script>
