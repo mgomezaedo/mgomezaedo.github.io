@@ -89,9 +89,3 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 </script>
 ```
-
-Commit.
-
-**Paso 2:** Abre **_pages/about.md** y agrega esta línea al final del archivo:
-```
-{% include academic_map.html %}
