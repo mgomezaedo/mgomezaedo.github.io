@@ -81,9 +81,9 @@ function updateTile() {
 
 document.addEventListener("DOMContentLoaded", function(){
   var dark = isDarkMode();
-  map = L.map('academic-map', { center: [20,-10], zoom: 2, scrollWheelZoom: false });
+  map = L.map('academic-map', { center: [20,-10], zoom: 2, scrollWheelZoom: false, attributionControl: false });
   tileLayer = L.tileLayer(dark ? darkTile : lightTile, {
-    attribution: tileAttr, maxZoom: 18
+    aattributionControl: false, maxZoom: 18
   }).addTo(map);
 
   var observer = new MutationObserver(function(){ updateTile(); });
