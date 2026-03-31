@@ -7,7 +7,12 @@
     width: 100%;
     border-radius: 8px;
     margin: 1rem 0;
-    border: 1px solid #ddd;
+    border: 1px solid #444;
+  }
+  .map-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
   }
   .map-legend {
     display: flex;
@@ -31,6 +36,8 @@
   }
 </style>
 
+<div class="map-section">
+
 <div class="map-legend">
   <div class="map-legend-item"><span class="legend-dot" style="background:#2563eb;"></span> Education &amp; work</div>
   <div class="map-legend-item"><span class="legend-dot" style="background:#dc2626;"></span> Conference talk</div>
@@ -42,10 +49,12 @@
 
 <div id="academic-map"></div>
 
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function(){
   var map = L.map('academic-map', {center:[20,-10], zoom:2, scrollWheelZoom:false});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:18
   }).addTo(map);
 
@@ -83,9 +92,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
   locs.forEach(function(d){
     var badge = '<span style="display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600;color:#fff;background:'+d[2]+';margin-bottom:3px;">'+types[d[2]]+'</span>';
-    var html = badge+'<br><strong style="font-size:13px;">'+d[3]+'</strong><br><span style="font-size:12px;color:#666;">'+d[4]+'</span>'+(d[5]?'<br><span style="font-size:12px;">'+d[5]+'</span>':'');
+    var html = badge+'<br><strong style="font-size:13px;">'+d[3]+'</strong><br><span style="font-size:12px;color:#999;">'+d[4]+'</span>'+(d[5]?'<br><span style="font-size:12px;color:#bbb;">'+d[5]+'</span>':'');
     L.marker([d[0],d[1]], {icon:ic(d[2])}).addTo(map).bindPopup(html, {maxWidth:220});
   });
 });
 </script>
-
