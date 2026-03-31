@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+  #academic-map {
+    height: 420px;
+    width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border: 1px solid #ddd;
+  }
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+  }
+  .map-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #fff;
+    box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  }
+</style>
+
+<div class="map-legend">
+  <div class="map-legend-item"><span class="legend-dot" style="background:#2563eb;"></span> Education &amp; work</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#dc2626;"></span> Conference talk</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> Poster</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#059669;"></span> Workshop / school</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#7c3aed;"></span> Research visit</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#94a3b8;"></span> Upcoming</div>
+</div>
+
+<div id="academic-map"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var map = L.map('academic-map', {center:[20,-10], zoom:2, scrollWheelZoom:false});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:18
+  }).addTo(map);
+
+  function ic(c){
+    return L.divIcon({
+      className:'',
+      html:'<div style="background:'+c+';width:13px;height:13px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>',
+      iconSize:[13,13], iconAnchor:[6,6], popupAnchor:[0,-9]
+    });
+  }
+
+  var B='#2563eb', R='#dc2626', Y='#f59e0b', G='#059669', P='#7c3aed', U='#94a3b8';
+
+  var locs = [
+    [-33.015, -71.551, B, "Viña del Mar", "Chile", "Hometown"],
+    [-33.047, -71.613, B, "UTFSM", "Valparaíso, Chile", "Mathematical Engineering, MSc Mathematics, Lecturer (2014–2022)"],
+    [51.499, -0.175, B, "Imperial College London", "London, UK", "PhD Mathematics Research (2023–present)"],
+    [54.775, -1.585, R, "WOpCoT 2023", "Durham, UK", "Workshop on Optimal Control Techniques"],
+    [48.208, 16.374, R, "Workshop on Optimal Control", "Vienna, Austria", "2024"],
+    [-32.890, -68.846, R, "Capricornio Mathematics Congress", "Mendoza, Argentina", "2024"],
+    [-29.903, -71.252, R, "LACIAM 2026", "La Serena, Chile", "II Latin American Congress on Industrial and Applied Mathematics"],
+    [51.621, -3.944, Y, "Poster presentation", "Swansea, UK", "2024"],
+    [55.953, -3.188, G, "MAC-MIGS Summer School", "Edinburgh, UK", "2024"],
+    [-33.349, -70.534, P, "Universidad Adolfo Ibáñez", "Santiago, Chile", "Research visit — collaboration with Julio Deride"],
+    [37.984, 23.728, U, "15th AIMS Conference", "Athens, Greece", "July 2026 — Invited talk, SS147"]
+  ];
+
+  var types = {};
+  types[B] = 'Education & work';
+  types[R] = 'Talk';
+  types[Y] = 'Poster';
+  types[G] = 'Workshop';
+  types[P] = 'Visit';
+  types[U] = 'Upcoming';
+
+  locs.forEach(function(d){
+    var badge = '<span style="display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600;color:#fff;background:'+d[2]+';margin-bottom:3px;">'+types[d[2]]+'</span>';
+    var html = badge+'<br><strong style="font-size:13px;">'+d[3]+'</strong><br><span style="font-size:12px;color:#666;">'+d[4]+'</span>'+(d[5]?'<br><span style="font-size:12px;">'+d[5]+'</span>':'');
+    L.marker([d[0],d[1]], {icon:ic(d[2])}).addTo(map).bindPopup(html, {maxWidth:220});
+  });
+});
+</script>
+```
+
+Commit.
+
+**Paso 2:** Abre **_pages/about.md** y agrega esta línea al final del archivo:
+```
+{% include academic_map.html %}
