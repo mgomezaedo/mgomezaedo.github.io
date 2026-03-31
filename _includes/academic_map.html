@@ -17,15 +17,18 @@
   <button class="zoom-btn active" id="btn-all" onclick="zoomTo('all')">All</button>
   <button class="zoom-btn" id="btn-europe" onclick="zoomTo('europe')">Europe</button>
   <button class="zoom-btn" id="btn-sa" onclick="zoomTo('sa')">South America</button>
+  <button class="zoom-btn" id="btn-santiago" onclick="zoomTo('santiago')">Santiago</button>
+  <button class="zoom-btn" id="btn-barcelona" onclick="zoomTo('barcelona')">Barcelona</button>
 </div>
 
 <div class="map-legend">
   <div class="map-legend-item"><span class="legend-dot" style="background:#2563eb;"></span> Education &amp; work</div>
   <div class="map-legend-item"><span class="legend-dot" style="background:#dc2626;"></span> Conference talk</div>
   <div class="map-legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> Poster</div>
-  <div class="map-legend-item"><span class="legend-dot" style="background:#059669;"></span> Workshop / school</div>
-  <div class="map-legend-item"><span class="legend-dot" style="background:#7c3aed;"></span> Research visit</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#059669;"></span> Workshop / seminar</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#7c3aed;"></span> Research / courses</div>
   <div class="map-legend-item"><span class="legend-dot" style="background:#94a3b8;"></span> Upcoming</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#e11d48;"></span> Personal</div>
 </div>
 
 <div id="academic-map"></div>
@@ -33,11 +36,17 @@
 </div>
 
 <script>
-var map;
+var map, tileLayer;
+var darkTile = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+var lightTile = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+var tileAttr = '&copy; OpenStreetMap &copy; CARTO';
+
 var views = {
-  all: { center: [20,-10], zoom: 2 },
+  all: { center: [20, -10], zoom: 2 },
   europe: { center: [50, 5], zoom: 4 },
-  sa: { center: [-33, -68], zoom: 4 }
+  sa: { center: [-33, -68], zoom: 4 },
+  santiago: { center: [-33.45, -70.63], zoom: 12 },
+  barcelona: { center: [41.38, 2.12], zoom: 13 }
 };
 
 function zoomTo(region) {
@@ -47,11 +56,37 @@ function zoomTo(region) {
   document.getElementById('btn-' + region).classList.add('active');
 }
 
+function isDarkMode() {
+  var html = document.documentElement;
+  if (html.getAttribute('data-theme') === 'dark') return true;
+  if (html.classList.contains('dark')) return true;
+  if (document.body.getAttribute('data-theme') === 'dark') return true;
+  var bg = getComputedStyle(document.body).backgroundColor;
+  if (bg) {
+    var match = bg.match(/\d+/g);
+    if (match && match.length >= 3) {
+      var brightness = (parseInt(match[0]) + parseInt(match[1]) + parseInt(match[2])) / 3;
+      if (brightness < 128) return true;
+    }
+  }
+  return false;
+}
+
+function updateTile() {
+  var url = isDarkMode() ? darkTile : lightTile;
+  if (tileLayer) tileLayer.setUrl(url);
+}
+
 document.addEventListener("DOMContentLoaded", function(){
+  var dark = isDarkMode();
   map = L.map('academic-map', { center: [20,-10], zoom: 2, scrollWheelZoom: false });
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 18
+  tileLayer = L.tileLayer(dark ? darkTile : lightTile, {
+    attribution: tileAttr, maxZoom: 18
   }).addTo(map);
+
+  var observer = new MutationObserver(function(){ updateTile(); });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme','class'] });
+  observer.observe(document.body, { attributes: true, attributeFilter: ['data-theme','class'] });
 
   function ic(c) {
     return L.divIcon({
@@ -61,25 +96,50 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
 
-  var B='#2563eb', R='#dc2626', Y='#f59e0b', G='#059669', P='#7c3aed', U='#94a3b8';
-
-  var locs = [
-    [-33.015, -71.551, B, "Viña del Mar", "Chile", "Hometown"],
-    [-33.047, -71.613, B, "UTFSM", "Valparaíso, Chile", "Mathematical Engineering, MSc Mathematics, Lecturer (2014–2022)"],
-    [51.499, -0.175, B, "Imperial College London", "London, UK", "PhD Mathematics Research (2023–present)"],
-    [54.775, -1.585, R, "WOpCoT 2023", "Durham, UK", "Workshop on Optimal Control Techniques"],
-    [48.208, 16.374, R, "Workshop on Optimal Control", "Vienna, Austria", "2024"],
-    [-32.890, -68.846, R, "Capricornio Mathematics Congress", "Mendoza, Argentina", "2024"],
-    [-29.903, -71.252, R, "LACIAM 2026", "La Serena, Chile", "II Latin American Congress on Industrial and Applied Mathematics"],
-    [51.621, -3.944, Y, "Poster presentation", "Swansea, UK", "2024"],
-    [55.953, -3.188, G, "MAC-MIGS Summer School", "Edinburgh, UK", "2024"],
-    [-33.349, -70.534, P, "Universidad Adolfo Ibáñez", "Santiago, Chile", "Research visit — collaboration with Julio Deride"],
-    [37.984, 23.728, U, "15th AIMS Conference", "Athens, Greece", "July 2026 — Invited talk, SS147"]
-  ];
+  var B='#2563eb', R='#dc2626', Y='#f59e0b', G='#059669', P='#7c3aed', U='#94a3b8', F='#e11d48';
 
   var types = {};
-  types[B] = 'Education & work'; types[R] = 'Talk'; types[Y] = 'Poster';
-  types[G] = 'Workshop'; types[P] = 'Visit'; types[U] = 'Upcoming';
+  types[B]='Education & work'; types[R]='Talk'; types[Y]='Poster';
+  types[G]='Workshop / seminar'; types[P]='Research / courses'; types[U]='Upcoming'; types[F]='Personal';
+
+  var locs = [
+    // Education & work
+    [-33.015, -71.551, B, "Viña del Mar", "Chile", "Hometown"],
+    [-33.047, -71.613, B, "UTFSM Valparaíso", "Valparaíso, Chile", "Mathematical Engineering + MSc Mathematics + Lecturer"],
+    [-33.489, -70.613, B, "UTFSM San Joaquín", "Santiago, Chile", "4 years studying + 1 year lecturing"],
+    [-33.399, -70.598, B, "UTFSM Vitacura", "Santiago, Chile", "2 years studying + lecturing"],
+    [51.499, -0.175, B, "Imperial College London", "London, UK", "PhD Mathematics Research (2023--present)"],
+
+    // Conference talks
+    [54.775, -1.585, R, "WOpCoT 2023", "Durham, UK", "Workshop on Optimal Control Techniques"],
+    [48.208, 16.374, R, "Workshop on Optimal Control", "Vienna, Austria", "2024"],
+    [-29.903, -71.252, R, "LACIAM 2026", "La Serena, Chile", "II Latin American Congress on Industrial and Applied Mathematics"],
+
+    // Poster
+    [51.621, -3.944, Y, "Poster presentation", "Swansea, UK", "2024"],
+
+    // Workshops / seminars
+    [55.953, -3.188, G, "MAC-MIGS Summer School", "Edinburgh, UK", "2024"],
+    [51.525, -0.134, G, "UCL Mathematics", "London, UK", "Imperial-UCL Numerics Seminar (regular) + Numerical Analysis Workshop 2023"],
+
+    // Research / courses
+    [-33.349, -70.534, P, "Universidad Adolfo Ibáñez", "Santiago, Chile", "Research visit — collaboration with Julio Deride"],
+    [-33.441, -70.641, P, "PUC Santiago", "Santiago, Chile", "Fourier Analysis course + Research internship with Mircea Petrache"],
+    [-33.458, -70.664, P, "CMM, Universidad de Chile", "Santiago, Chile", "Attended seminar"],
+    [-33.449, -70.683, P, "USACh", "Santiago, Chile", "ENIM — National Student Mathematics Conference"],
+
+    // Attended as participant
+    [-32.890, -68.846, G, "SUMA 2019", "Mendoza, Argentina", "Attended as participant"],
+
+    // Upcoming
+    [37.984, 23.728, U, "15th AIMS Conference", "Athens, Greece", "July 2026 — Invited talk, SS147"],
+
+    // Personal — FC Barcelona
+    [41.3809, 2.1228, F, "Camp Nou", "Barcelona, Spain", "FC Barcelona — home stadium"],
+    [41.3649, 2.1527, F, "Estadi Olímpic de Montjuïc", "Barcelona, Spain", "FC Barcelona — temporary home 2023-2025"],
+    [41.3816, 2.1168, F, "Palau Blaugrana", "Barcelona, Spain", "FC Barcelona — basketball and handball arena"],
+    [41.3534, 2.0741, F, "Ciutat Esportiva Joan Gamper", "Barcelona, Spain", "FC Barcelona — training ground"]
+  ];
 
   locs.forEach(function(d) {
     var badge = '<span style="display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600;color:#fff;background:'+d[2]+';margin-bottom:3px;">'+types[d[2]]+'</span>';
