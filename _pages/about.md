@@ -26,3 +26,4 @@ I am a final year PhD student at Imperial College London, supervised by [Dante K
 More broadly, I am interested in optimal control, numerical analysis, scientific computing, mean field games, risk measures, and approximation theory.
 
 Previously, I obtained a Mathematical Engineering degree and an MSc in Mathematics from [Universidad Técnica Federico Santa María](https://usm.cl/) (UTFSM) in Chile, where I also worked as a lecturer for three years. I am funded by a Roth Scholarship (Imperial) and a Becas Chile scholarship (ANID).
+{% include academic_map.html %}
