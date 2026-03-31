@@ -23,6 +23,8 @@ My [MyAnimeList profile](https://myanimelist.net/). Here are some recent watches
 
 ### Currently watching
 
+<img src="https://www.animenewsnetwork.com/images/encyc/A28887-1802597937.1770167686.jpg" width="130" style="float:left; margin-right:15px; margin-bottom:10px; border-radius:4px;">
+
 **Fate/strange Fake** · Airing
 : _No spoiler thoughts coming soon._
 
