@@ -9,12 +9,13 @@ nav_order: 6
 
 ## Music
 
-### Top 17 — Aimer
+### Top — Aimer (work in progress)
 
-My favourite artist. Here is my personal ranking — subject to change without notice.
+My favourite artist. Ranking subject to change without notice.
 
-_List coming soon._
+**#1 · AM02:00**
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9fJhz5Dn5oU" frameborder="0" allowfullscreen></iframe>
 ---
 
 ## Anime
