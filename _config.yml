@@ -8,6 +8,7 @@ middle_name:
 last_name: Gómez-Aedo
 contact_note: >
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
+  Personal website of Matías Gómez-Aedo. PhD student in Mathematics at Imperial College London.
 footer_text: >
 keywords: # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
