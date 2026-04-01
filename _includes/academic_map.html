@@ -23,11 +23,10 @@
 </div>
 
 <div class="map-legend">
-  <div class="map-legend-item"><span class="legend-dot" style="background:#2563eb;"></span> Education &amp; work</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#2563eb;"></span> University / research centre</div>
   <div class="map-legend-item"><span class="legend-dot" style="background:#dc2626;"></span> Conference talk</div>
   <div class="map-legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> Poster</div>
-  <div class="map-legend-item"><span class="legend-dot" style="background:#059669;"></span> Workshop / seminar</div>
-  <div class="map-legend-item"><span class="legend-dot" style="background:#7c3aed;"></span> Research / courses</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#059669;"></span> Workshop / seminar / school</div>
   <div class="map-legend-item"><span class="legend-dot" style="background:#94a3b8;"></span> Upcoming</div>
   <div class="map-legend-item"><span class="legend-dot" style="background:#e11d48;"></span> Personal</div>
 </div>
@@ -40,7 +39,6 @@
 var map, tileLayer;
 var darkTile = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
 var lightTile = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-var tileAttr = '&copy; OpenStreetMap &copy; CARTO';
 
 var views = {
   all: { center: [20, -10], zoom: 2 },
@@ -48,7 +46,7 @@ var views = {
   sa: { center: [-33, -68], zoom: 4 },
   santiago: { center: [-33.45, -70.63], zoom: 12 },
   barcelona: { center: [41.38, 2.12], zoom: 13 },
-  london: { center: [51.51, -0.13], zoom: 13 },
+  london: { center: [51.51, -0.13], zoom: 13 }
 };
 
 function zoomTo(region) {
@@ -82,9 +80,7 @@ function updateTile() {
 document.addEventListener("DOMContentLoaded", function(){
   var dark = isDarkMode();
   map = L.map('academic-map', { center: [20,-10], zoom: 2, scrollWheelZoom: false, attributionControl: false });
-  tileLayer = L.tileLayer(dark ? darkTile : lightTile, {
-    attributionControl: false, maxZoom: 18
-  }).addTo(map);
+  tileLayer = L.tileLayer(dark ? darkTile : lightTile, { maxZoom: 18 }).addTo(map);
 
   var observer = new MutationObserver(function(){ updateTile(); });
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme','class'] });
@@ -98,43 +94,41 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
 
-  var B='#2563eb', R='#dc2626', Y='#f59e0b', G='#059669', P='#7c3aed', U='#94a3b8', F='#e11d48';
+  var U='#2563eb', R='#dc2626', Y='#f59e0b', G='#059669', A='#94a3b8', F='#e11d48';
 
   var types = {};
-  types[B]='Education & work'; types[R]='Talk'; types[Y]='Poster';
-  types[G]='Workshop / seminar'; types[P]='Research / courses'; types[U]='Upcoming'; types[F]='Personal';
+  types[U]='University'; types[R]='Talk'; types[Y]='Poster';
+  types[G]='Workshop / seminar'; types[A]='Upcoming'; types[F]='Personal';
 
   var locs = [
-    // Education & work
-    [-33.015, -71.551, B, "Viña del Mar", "Chile", "Hometown"],
-    [-33.047, -71.613, B, "UTFSM Valparaíso", "Valparaíso, Chile", "Mathematical Engineering + MSc Mathematics + Lecturer"],
-    [-33.489, -70.613, B, "UTFSM San Joaquín", "Santiago, Chile", "4 years studying + 1 year lecturing"],
-    [-33.399, -70.598, B, "UTFSM Vitacura", "Santiago, Chile", "2 years studying + lecturing"],
-    [51.499, -0.175, B, "Imperial College London", "London, UK", "PhD Mathematics Research (2023--present)"],
+    // University / research centre — Chile
+    [-33.015, -71.551, U, "Viña del Mar", "Chile", "Hometown"],
+    [-33.489, -70.613, U, "UTFSM San Joaquín", "Santiago, Chile", "Pregrado (2016-2020), MSc (2020), TA (2015-2019), Lecturer (2020-2022)"],
+    [-33.399, -70.598, U, "UTFSM Vitacura", "Santiago, Chile", "Pregrado (2014-2015), TA (2015-2018), Lecturer (2022)"],
+    [-33.498, -70.611, U, "PUC San Joaquín", "Santiago, Chile", "Fourier Analysis (2019), Research internship with Petrache (2019-2020), Working groups (2021-2022)"],
+    [-33.458, -70.664, U, "CMM, Universidad de Chile", "Santiago, Chile", "Attended talk by Julio Deride (2022)"],
+    [-33.449, -70.683, U, "USACh", "Estación Central, Santiago, Chile", "ENIM 2019"],
+    [-33.349, -70.534, U, "Universidad Adolfo Ibáñez", "Peñalolén, Santiago, Chile", "Research visit — Julio Deride (2025-2026)"],
+    [-33.047, -71.613, U, "UTFSM Valparaíso", "Valparaíso, Chile", "WOpCoT 2023, OT/MFG Conference 2024, LACIAM 2026"],
+
+    // University / research centre — UK
+    [51.499, -0.175, U, "Imperial College London", "London, UK", "PhD Mathematics Research (2023-present)"],
+    [51.525, -0.134, U, "UCL Mathematics", "London, UK", "Imperial-UCL Numerics Seminar + NA Workshop 2023"],
 
     // Conference talks
-    [54.775, -1.585, R, "WOpCoT 2023", "Durham, UK", "Workshop on Optimal Control Techniques"],
-    [48.208, 16.374, R, "Workshop on Optimal Control", "Vienna, Austria", "2024"],
-    [-29.903, -71.252, R, "LACIAM 2026", "La Serena, Chile", "II Latin American Congress on Industrial and Applied Mathematics"],
+    [54.775, -1.585, R, "LMS Lecture Series 2023", "Durham, UK", "Optimal Transport lectures by Santambrogio"],
+    [48.208, 16.374, R, "16th Viennese Conference on Optimal Control", "Vienna, Austria", "Session talk (2025)"],
+    [-29.903, -71.252, R, "Congreso Capricornio 2019", "La Serena, Chile", "PDE session talk"],
 
     // Poster
-    [51.621, -3.944, Y, "Poster presentation", "Swansea, UK", "2024"],
+    [51.621, -3.944, Y, "Swansea Summer School in Nonlinear PDEs", "Swansea, UK", "Poster presentation (2024)"],
 
-    // Workshops / seminars
-    [55.953, -3.188, G, "MAC-MIGS Summer School", "Edinburgh, UK", "2024"],
-    [51.525, -0.134, G, "UCL Mathematics", "London, UK", "Imperial-UCL Numerics Seminar (regular) + Numerical Analysis Workshop 2023"],
-
-    // Research / courses
-    [-33.349, -70.534, P, "Universidad Adolfo Ibáñez", "Santiago, Chile", "Research visit — collaboration with Julio Deride"],
-    [-33.441, -70.641, P, "PUC Santiago", "Santiago, Chile", "Fourier Analysis course + Research internship with Mircea Petrache"],
-    [-33.458, -70.664, P, "CMM, Universidad de Chile", "Santiago, Chile", "Attended seminar"],
-    [-33.449, -70.683, P, "USACh", "Santiago, Chile", "ENIM — National Student Mathematics Conference"],
-
-    // Attended as participant
+    // Workshops / seminars / schools
+    [55.953, -3.188, G, "MAC-MIGS Summer School", "Edinburgh, UK", "Numerical PDEs, Optimization, UQ (2024)"],
     [-32.890, -68.846, G, "SUMA 2019", "Mendoza, Argentina", "Attended as participant"],
 
     // Upcoming
-    [37.984, 23.728, U, "15th AIMS Conference", "Athens, Greece", "July 2026 — Invited talk, SS147"],
+    [37.984, 23.728, A, "15th AIMS Conference", "Athens, Greece", "July 2026 — Invited talk, SS147"],
 
     // Personal — FC Barcelona
     [41.3809, 2.1228, F, "Camp Nou", "Barcelona, Spain", "FC Barcelona — home stadium"],
