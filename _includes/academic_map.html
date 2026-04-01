@@ -9,6 +9,7 @@
   .legend-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 2px solid #fff; box-shadow: 0 0 3px rgba(0,0,0,0.3); }
   .zoom-btn { padding: 5px 14px; border-radius: 4px; border: 1px solid #555; background: transparent; color: #ccc; font-size: 13px; cursor: pointer; }
   .zoom-btn.active { background: #333; border-color: #888; color: #fff; font-weight: 600; }
+  .leaflet-div-icon { background: none; border: none; }
 </style>
 
 <div class="map-section">
@@ -101,7 +102,6 @@ document.addEventListener("DOMContentLoaded", function(){
   types[G]='Workshop / seminar'; types[A]='Upcoming'; types[F]='Personal';
 
   var locs = [
-    // University / research centre — Chile
     [-33.015, -71.551, U, "Viña del Mar", "Chile", "Hometown"],
     [-33.489, -70.613, U, "UTFSM San Joaquín", "Santiago, Chile", "Pregrado (2016-2020), MSc (2020), TA (2015-2019), Lecturer (2020-2022)"],
     [-33.399, -70.598, U, "UTFSM Vitacura", "Santiago, Chile", "Pregrado (2014-2015), TA (2015-2018), Lecturer (2022)"],
@@ -110,27 +110,15 @@ document.addEventListener("DOMContentLoaded", function(){
     [-33.449, -70.683, U, "USACh", "Santiago, Chile", "ENIM 2019"],
     [-33.500, -70.575, U, "Universidad Adolfo Ibáñez", "Santiago, Chile", "Research visit — Julio Deride (2025-2026)"],
     [-33.047, -71.613, U, "UTFSM Valparaíso", "Valparaíso, Chile", "WOpCoT 2023, OT/MFG Conference 2024, LACIAM 2026"],
-
-    // University / research centre — UK
     [51.499, -0.175, U, "Imperial College London", "London, UK", "PhD Mathematics Research (2023-present)"],
     [51.525, -0.134, U, "UCL Mathematics", "London, UK", "Imperial-UCL Numerics Seminar + NA Workshop 2023"],
-
-    // Conference talks
     [54.775, -1.585, R, "LMS Lecture Series 2023", "Durham, UK", "Optimal Transport lectures by Santambrogio"],
     [48.208, 16.374, R, "16th Viennese Conference on Optimal Control", "Vienna, Austria", "Session talk (2025)"],
     [-29.903, -71.252, R, "Congreso Capricornio 2019", "La Serena, Chile", "PDE session talk"],
-
-    // Poster
     [51.621, -3.944, Y, "Swansea Summer School in Nonlinear PDEs", "Swansea, UK", "Poster presentation (2024)"],
-
-    // Workshops / seminars / schools
     [55.953, -3.188, G, "MAC-MIGS Summer School", "Edinburgh, UK", "Numerical PDEs, Optimization, UQ (2024)"],
     [-32.890, -68.846, G, "SUMA 2019", "Mendoza, Argentina", "Attended as participant"],
-
-    // Upcoming
     [37.984, 23.728, A, "15th AIMS Conference", "Athens, Greece", "July 2026 — Invited talk, SS147"],
-
-    // Personal — FC Barcelona
     [41.3809, 2.1228, F, "Camp Nou", "Barcelona, Spain", "FC Barcelona — home stadium"],
     [41.3649, 2.1527, F, "Estadi Olímpic de Montjuïc", "Barcelona, Spain", "FC Barcelona — temporary home 2023-2025"],
     [41.3816, 2.1168, F, "Palau Blaugrana", "Barcelona, Spain", "FC Barcelona — basketball and handball arena"],
@@ -139,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   locs.forEach(function(d) {
     var badge = '<span style="display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600;color:#fff;background:'+d[2]+';margin-bottom:3px;">'+types[d[2]]+'</span>';
-    var html = badge+'<br><strong style="font-size:14px;color:#fff;">'+d[3]+'</strong><br><span style="font-size:12px;color:#ccc;">'+d[4]+'</span>'+(d[5]?'<br><span style="font-size:12px;color:#aaa;">'+d[5]+'</span>':'');
+    var html = badge+'<br><strong style="font-size:14px;color:#333;">'+d[3]+'</strong><br><span style="font-size:12px;color:#666;">'+d[4]+'</span>'+(d[5]?'<br><span style="font-size:12px;color:#555;">'+d[5]+'</span>':'');
     L.marker([d[0],d[1]], {icon: ic(d[2])}).addTo(map).bindPopup(html, {maxWidth: 240});
   });
 });
