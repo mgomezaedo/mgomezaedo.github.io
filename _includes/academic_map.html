@@ -107,8 +107,8 @@ document.addEventListener("DOMContentLoaded", function(){
     [-33.399, -70.598, U, "UTFSM Vitacura", "Santiago, Chile", "Pregrado (2014-2015), TA (2015-2018), Lecturer (2022)"],
     [-33.498, -70.611, U, "PUC San Joaquín", "Santiago, Chile", "Fourier Analysis (2019), Research internship with Petrache (2019-2020), Working groups (2021-2022)"],
     [-33.458, -70.664, U, "CMM, Universidad de Chile", "Santiago, Chile", "Attended talk by Julio Deride (2022)"],
-    [-33.449, -70.683, U, "USACh", "Estación Central, Santiago, Chile", "ENIM 2019"],
-    [-33.349, -70.534, U, "Universidad Adolfo Ibáñez", "Peñalolén, Santiago, Chile", "Research visit — Julio Deride (2025-2026)"],
+    [-33.449, -70.683, U, "USACh", "Santiago, Chile", "ENIM 2019"],
+    [-33.500, -70.575, U, "Universidad Adolfo Ibáñez", "Santiago, Chile", "Research visit — Julio Deride (2025-2026)"],
     [-33.047, -71.613, U, "UTFSM Valparaíso", "Valparaíso, Chile", "WOpCoT 2023, OT/MFG Conference 2024, LACIAM 2026"],
 
     // University / research centre — UK
@@ -139,8 +139,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
   locs.forEach(function(d) {
     var badge = '<span style="display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600;color:#fff;background:'+d[2]+';margin-bottom:3px;">'+types[d[2]]+'</span>';
-    var html = badge+'<br><strong style="font-size:13px;">'+d[3]+'</strong><br><span style="font-size:12px;color:#999;">'+d[4]+'</span>'+(d[5]?'<br><span style="font-size:12px;color:#bbb;">'+d[5]+'</span>':'');
-    L.marker([d[0],d[1]], {icon: ic(d[2])}).addTo(map).bindPopup(html, {maxWidth: 220});
+    var html = badge+'<br><strong style="font-size:14px;color:#fff;">'+d[3]+'</strong><br><span style="font-size:12px;color:#ccc;">'+d[4]+'</span>'+(d[5]?'<br><span style="font-size:12px;color:#aaa;">'+d[5]+'</span>':'');
+    L.marker([d[0],d[1]], {icon: ic(d[2])}).addTo(map).bindPopup(html, {maxWidth: 240});
   });
 });
 </script>
