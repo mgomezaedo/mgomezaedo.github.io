@@ -6,6 +6,8 @@ description: FC Barcelona — Futbol masculí
 nav: false
 ---
 
+<div style="height:6px; background: linear-gradient(to right, #004D98 50%, #A50044 50%); border-radius:3px; margin-bottom:1.5rem;"></div>
+
 Totes les temporades del primer equip que he seguit com a soci.
 
 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 1.5rem;">
@@ -17,10 +19,9 @@ Totes les temporades del primer equip que he seguit com a soci.
 </div>
 </a>
 
-<a href="#" style="text-decoration: none; color: inherit;">
-<div style="background: #1a1a2e; border-radius: 8px; padding: 18px 12px; text-align: center;">
-<div style="font-size: 16px; font-weight: 600; color: #fff;">2024/25</div>
-<div style="font-size: 11px; color: #888; margin-top: 4px;">Pròximament</div>
+<a href="/others/fcb/futbol/2024-25/" style="text-decoration: none; color: inherit;">
+<div style="background: #004D98; border-radius: 8px; padding: 18px 12px; text-align: center;">
+<div style="font-size: 16px; font-weight: 700; color: #fff;">2024/25</div>
 </div>
 </a>
 
