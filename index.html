@@ -10,8 +10,8 @@ var views = {
   europe: { center: [50, 5], zoom: 4 },
   sa: { center: [-33, -68], zoom: 4 },
   santiago: { center: [-33.45, -70.63], zoom: 12 },
-  barcelona: { center: [41.38, 2.12], zoom: 13 },
-  london: { center: [51.51, -0.13], zoom: 13 }
+  barcelona: { center: [41.37, 2.10], zoom: 13 },
+  london: { center: [51.49, -0.15], zoom: 12 }
 };
 
 function zoomTo(region) {
@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function(){
   types[U]='University / research'; types[H]='Lived in this city'; types[B]='FC Barcelona';
 
   var locs = [
-    [-33.015, -71.551, U, "Viña del Mar", "Chile", "The city where I was born"],
     [-33.489, -70.613, U, "UTFSM San Joaquín", "Santiago, Chile", "Here I did my undergrad in Mathematical Engineering and my MSc between 2016 and 2020. I also did many TAs and was a lecturer between 2020 and 2022"],
     [-33.399, -70.598, U, "UTFSM Vitacura", "Santiago, Chile", "Here I took my first undergrad courses in 2014-15 along with many TAs. I came back as a lecturer in 2022 for both day and evening programmes"],
     [-33.498, -70.611, U, "PUC San Joaquín", "Santiago, Chile", "I took a Fourier Analysis course here in 2019, did my research internship with Mircea Petrache in 2019-20, and joined several working groups on geometry and PDEs in 2021-22"],
@@ -73,25 +72,25 @@ document.addEventListener("DOMContentLoaded", function(){
     [-33.449, -70.683, U, "USACh", "Santiago, Chile", "I attended ENIM 2019 here"],
     [-33.498, -70.522, U, "Universidad Adolfo Ibáñez", "Santiago, Chile", "I visited Julio Deride here in early 2026"],
     [-33.047, -71.613, U, "UTFSM Valparaíso", "Valparaíso, Chile", "I gave a talk at WOpCoT in late 2023, attended a big OT/MFG conference in early 2024, and came back as a speaker at LACIAM 2026"],
+    [-29.903, -71.252, U, "Universidad de La Serena", "La Serena, Chile", "I gave my first ever conference talk here at PDE session in COMCA in 2019"],
+    [-32.890, -68.846, U, "Universidad Nacional de Cuyo", "Mendoza, Argentina", "I attended SUMA 2019 here"],
     [51.499, -0.175, U, "Imperial College London", "London, UK", "Where I have been doing my PhD since 2023, working with Dante Kalise on data-driven methods for HJB equations"],
     [51.525, -0.134, U, "UCL Mathematics", "London, UK", "I regularly attend the Imperial-UCL Numerics Seminar here, and attended a workshop on numerical methods for MFG in 2023"],
     [51.489, -3.179, U, "Cardiff University", "Cardiff, UK", "I visited here on a couple of occasions with Dante in 2024-25"],
-    [54.775, -1.585, U, "Durham", "UK", "I attended the LMS Invited Lectures by Filippo Santambrogio on Optimal Transport in 2023"],
-    [48.208, 16.374, U, "Vienna", "Austria", "I gave a session talk at the 16th Viennese Conference on Optimal Control in 2025"],
-    [-29.903, -71.252, U, "La Serena", "Chile", "I gave my first ever conference talk here at PDE session in COMCA in 2019"],
-    [51.621, -3.944, U, "Swansea", "UK", "I attended the Swansea Summer School in Nonlinear PDEs in 2024 and had the chance to present a poster on my work"],
-    [55.953, -3.188, U, "Edinburgh", "UK", "I attended the MAC-MIGS Summer School on Numerical PDEs and Optimization in 2024"],
-    [-32.890, -68.846, U, "Mendoza", "Argentina", "I attended SUMA 2019 here"],
-    [37.984, 23.728, U, "Athens", "Greece", "Invited talk at the 15th AIMS Conference in July 2026"],
-    [-32.973, -71.544, H, "Reñaca", "Viña del Mar, Chile", "Where I grew up"],
-    [-33.421, -70.605, H, "Providencia", "Santiago, Chile", "Lived here during my university years"],
-    [51.465, -0.170, H, "Clapham Junction", "London, UK", "My London home during the PhD"],
-    [41.404, 2.157, H, "Gràcia", "Barcelona, Spain", "My family's home in Barcelona — visit whenever I can"],
+    [54.775, -1.585, U, "Durham University", "Durham, UK", "I attended the LMS Invited Lectures by Filippo Santambrogio on Optimal Transport in 2023"],
+    [51.621, -3.944, U, "Swansea University", "Swansea, UK", "I attended the Swansea Summer School in Nonlinear PDEs in 2024 and had the chance to present a poster on my work"],
+    [55.953, -3.188, U, "University of Edinburgh", "Edinburgh, UK", "I attended the MAC-MIGS Summer School on Numerical PDEs and Optimization in 2024"],
+    [48.199, 16.370, U, "TU Wien", "Vienna, Austria", "I gave a session talk at the 16th Viennese Conference on Optimal Control in 2025"],
+    [37.968, 23.782, U, "National and Kapodistrian University of Athens", "Athens, Greece", "Invited talk at the 15th AIMS Conference in July 2026"],
+    [-32.973, -71.544, H, "Reñaca", "Viña del Mar, Chile", "The neighbourhood where I was born and spent my early years"],
+    [-33.418, -70.604, H, "Metro Francisco Bilbao", "Providencia, Santiago, Chile", "The neighbourhood where I lived most of my time in Santiago"],
+    [51.465, -0.170, H, "Clapham Junction Station", "South-West London, UK", "The neighbourhood where I lived most of my time in London"],
+    [41.404, 2.157, H, "Plaça Lesseps", "Gràcia, Barcelona, Catalunya", "The neighbourhood where I stay most of the time when I'm in Barcelona"],
     [41.3809, 2.1228, B, "Camp Nou", "Barcelona, Spain", "Home of FC Barcelona — visit whenever I can"],
     [41.3649, 2.1527, B, "Estadi Olímpic de Montjuïc", "Barcelona, Spain", "Was Barça's temporary home while Camp Nou was being renovated (2023-2025)"],
-    [41.3816, 2.1168, B, "Palau Blaugrana", "Barcelona, Spain", "Where Barça plays basketball, futsal and handball — visit whenever I can"],
-    [41.3534, 2.0741, B, "Ciutat Esportiva Joan Gamper", "Barcelona, Spain", "Barça's training ground"],
-    [41.3528, 2.0711, B, "Estadi Johan Cruyff", "Barcelona, Spain", "Where FC Barcelona Femení and Barça Atlètic play — visit whenever I can"]
+    [41.3808, 2.1192, B, "Palau Blaugrana", "Barcelona, Spain", "Where Barça plays basketball, futsal and handball — visit whenever I can"],
+    [41.3613, 2.0573, B, "Ciutat Esportiva Joan Gamper", "Sant Joan Despí, Barcelona", "Barça's training ground"],
+    [41.3607, 2.0548, B, "Estadi Johan Cruyff", "Sant Joan Despí, Barcelona", "Where FC Barcelona Femení and Barça Atlètic play — visit whenever I can"]
   ];
 
   locs.forEach(function(d) {
