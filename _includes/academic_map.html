@@ -25,11 +25,7 @@
 
 <div class="map-legend">
   <div class="map-legend-item"><span class="legend-dot" style="background:#2563eb;"></span> University / research centre</div>
-  <div class="map-legend-item"><span class="legend-dot" style="background:#dc2626;"></span> Conference talk</div>
-  <div class="map-legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> Poster</div>
-  <div class="map-legend-item"><span class="legend-dot" style="background:#059669;"></span> Workshop / seminar / school</div>
-  <div class="map-legend-item"><span class="legend-dot" style="background:#94a3b8;"></span> Upcoming</div>
-  <div class="map-legend-item"><span class="legend-dot" style="background:#06b6d4;"></span> Lived here</div>
+  <div class="map-legend-item"><span class="legend-dot" style="background:#1f2937;"></span> Lived in this city</div>
   <div class="map-legend-item"><span class="legend-dot" style="background:#a31545;"></span> FC Barcelona</div>
 </div>
 
@@ -81,7 +77,7 @@ function updateTile() {
 
 document.addEventListener("DOMContentLoaded", function(){
   var dark = isDarkMode();
-  map = L.map('academic-map', { center: [20,-10], zoom: 2, scrollWheelZoom: false, attributionControl: false });
+  map = L.map('academic-map', { center: [20,-10], zoom: 2, scrollWheelZoom: true, attributionControl: false });
   tileLayer = L.tileLayer(dark ? darkTile : lightTile, { maxZoom: 18 }).addTo(map);
 
   var observer = new MutationObserver(function(){ updateTile(); });
@@ -96,11 +92,10 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
 
-  var U='#2563eb', R='#dc2626', Y='#f59e0b', G='#059669', A='#94a3b8', H='#06b6d4', B='#a31545';
+  var U='#2563eb', H='#1f2937', B='#a31545';
 
   var types = {};
-  types[U]='University'; types[R]='Talk'; types[Y]='Poster';
-  types[G]='Workshop / seminar'; types[A]='Upcoming'; types[H]='Lived here'; types[B]='FC Barcelona';
+  types[U]='University / research'; types[H]='Lived in this city'; types[B]='FC Barcelona';
 
   var locs = [
     [-33.015, -71.551, U, "Viña del Mar", "Chile", "The city where I was born"],
@@ -113,13 +108,14 @@ document.addEventListener("DOMContentLoaded", function(){
     [-33.047, -71.613, U, "UTFSM Valparaíso", "Valparaíso, Chile", "I gave a talk at WOpCoT in late 2023, attended a big OT/MFG conference in early 2024, and came back as a speaker at LACIAM 2026"],
     [51.499, -0.175, U, "Imperial College London", "London, UK", "Where I have been doing my PhD since 2023, working with Dante Kalise on data-driven methods for HJB equations"],
     [51.525, -0.134, U, "UCL Mathematics", "London, UK", "I regularly attend the Imperial-UCL Numerics Seminar here, and attended a workshop on numerical methods for MFG in 2023"],
-    [54.775, -1.585, R, "Durham", "UK", "I attended the LMS Invited Lectures by Filippo Santambrogio on Optimal Transport in 2023"],
-    [48.208, 16.374, R, "Vienna", "Austria", "I gave a session talk at the 16th Viennese Conference on Optimal Control in 2025"],
-    [-29.903, -71.252, R, "La Serena", "Chile", "I gave my first ever conference talk here at PDE session in COMCA in 2019"],
-    [51.621, -3.944, Y, "Swansea", "UK", "I attended the Swansea Summer School in Nonlinear PDEs in 2024 and had the chance to present a poster on my work"],
-    [55.953, -3.188, G, "Edinburgh", "UK", "I attended the MAC-MIGS Summer School on Numerical PDEs and Optimization in 2024"],
-    [-32.890, -68.846, G, "Mendoza", "Argentina", "I attended SUMA 2019 here"],
-    [37.984, 23.728, A, "Athens", "Greece", "Invited talk at the 15th AIMS Conference in July 2026"],
+    [51.489, -3.179, U, "Cardiff University", "Cardiff, UK", "I visited here on a couple of occasions with Dante in 2024-25"],
+    [54.775, -1.585, U, "Durham", "UK", "I attended the LMS Invited Lectures by Filippo Santambrogio on Optimal Transport in 2023"],
+    [48.208, 16.374, U, "Vienna", "Austria", "I gave a session talk at the 16th Viennese Conference on Optimal Control in 2025"],
+    [-29.903, -71.252, U, "La Serena", "Chile", "I gave my first ever conference talk here at PDE session in COMCA in 2019"],
+    [51.621, -3.944, U, "Swansea", "UK", "I attended the Swansea Summer School in Nonlinear PDEs in 2024 and had the chance to present a poster on my work"],
+    [55.953, -3.188, U, "Edinburgh", "UK", "I attended the MAC-MIGS Summer School on Numerical PDEs and Optimization in 2024"],
+    [-32.890, -68.846, U, "Mendoza", "Argentina", "I attended SUMA 2019 here"],
+    [37.984, 23.728, U, "Athens", "Greece", "Invited talk at the 15th AIMS Conference in July 2026"],
     [-32.973, -71.544, H, "Reñaca", "Viña del Mar, Chile", "Where I grew up"],
     [-33.421, -70.605, H, "Providencia", "Santiago, Chile", "Lived here during my university years"],
     [51.465, -0.170, H, "Clapham Junction", "London, UK", "My London home during the PhD"],
