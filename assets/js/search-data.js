@@ -16,6 +16,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "Interactive projects and visualizations showcasing my research and interests.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
         },{id: "nav-talks",
           title: "talks",
           description: "",
@@ -37,12 +44,19 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "nav-others",
-          title: "others",
-          description: "The things that keep me sane during the PhD.",
+        },{id: "nav-books",
+          title: "books",
+          description: "Books I&#39;m reading and what I think about them.",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/others/";
+            window.location.href = "/books/";
+          },
+        },{id: "nav-notebook",
+          title: "notebook",
+          description: "Notes, reflections, and things I learn along the way.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/notebook/";
           },
         },{id: "nav-repositories",
           title: "repositories",
@@ -51,12 +65,12 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/repositories/";
           },
-        },{id: "nav-bookshelf",
-          title: "bookshelf",
-          description: "",
+        },{id: "nav-others",
+          title: "others",
+          description: "The things that keep me sane during the PhD.",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/books/";
+            window.location.href = "/others/";
           },
         },{id: "post-a-post-with-plotly-js",
         
