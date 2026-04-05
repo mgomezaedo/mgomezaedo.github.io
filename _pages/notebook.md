@@ -17,19 +17,19 @@ A place where I write about what I'm learning. Each topic is a door to a collect
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 1.5rem;">
 
 <a href="/notebook/neurociencia/" style="text-decoration: none; color: inherit;">
-<div class="nb-card" style="background: #1EC73B; border-radius: 8px; padding: 28px 16px; text-align: center; min-height: 120px; display: flex; align-items: center; justify-content: center;">
+<div class="nb-card" style="background: #15803d; border-radius: 8px; padding: 28px 16px; text-align: center; min-height: 120px; display: flex; align-items: center; justify-content: center;">
 <div style="font-size: 18px; font-weight: 700; color: #fff;">Neuroscience</div>
 </div>
 </a>
 
 <a href="/notebook/psicologia/" style="text-decoration: none; color: inherit;">
-<div class="nb-card" style="background: #DB81CA; border-radius: 8px; padding: 28px 16px; text-align: center; min-height: 120px; display: flex; align-items: center; justify-content: center;">
+<div class="nb-card" style="background: #a85696; border-radius: 8px; padding: 28px 16px; text-align: center; min-height: 120px; display: flex; align-items: center; justify-content: center;">
 <div style="font-size: 18px; font-weight: 700; color: #fff;">Psychology</div>
 </div>
 </a>
 
 <a href="/notebook/filosofia/" style="text-decoration: none; color: inherit;">
-<div class="nb-card" style="background: #A852CC; border-radius: 8px; padding: 28px 16px; text-align: center; min-height: 120px; display: flex; align-items: center; justify-content: center;">
+<div class="nb-card" style="background: #7c3aad; border-radius: 8px; padding: 28px 16px; text-align: center; min-height: 120px; display: flex; align-items: center; justify-content: center;">
 <div style="font-size: 18px; font-weight: 700; color: #fff;">Philosophy</div>
 </div>
 </a>
@@ -41,7 +41,7 @@ A place where I write about what I'm learning. Each topic is a door to a collect
 </a>
 
 <a href="/notebook/mitologia/" style="text-decoration: none; color: inherit;">
-<div class="nb-card" style="background: #FF823D; border-radius: 8px; padding: 28px 16px; text-align: center; min-height: 120px; display: flex; align-items: center; justify-content: center;">
+<div class="nb-card" style="background: #c45a28; border-radius: 8px; padding: 28px 16px; text-align: center; min-height: 120px; display: flex; align-items: center; justify-content: center;">
 <div style="font-size: 18px; font-weight: 700; color: #fff;">Mythology</div>
 </div>
 </a>
