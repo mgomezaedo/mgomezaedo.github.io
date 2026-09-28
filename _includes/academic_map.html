@@ -3,6 +3,7 @@
 
 <style>
   #academic-map { height: 420px; width: 100%; border-radius: 8px; margin: 0.5rem 0; border: 1px solid #444; }
+  #academic-map.dark-tiles .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9); }
   .map-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #333; }
   .map-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; font-size: 0.85rem; }
   .map-legend-item { display: flex; align-items: center; gap: 5px; }
@@ -35,8 +36,7 @@
 
 <script>
 var map, tileLayer;
-var darkTile = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-var lightTile = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+var osmTile = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 var views = {
   all: { center: [20, -10], zoom: 2 },
@@ -71,14 +71,13 @@ function isDarkMode() {
 }
 
 function updateTile() {
-  var url = isDarkMode() ? darkTile : lightTile;
-  if (tileLayer) tileLayer.setUrl(url);
+  document.getElementById('academic-map').classList.toggle('dark-tiles', isDarkMode());
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-  var dark = isDarkMode();
-  map = L.map('academic-map', { center: [20,-10], zoom: 2, scrollWheelZoom: true, attributionControl: false });
-  tileLayer = L.tileLayer(dark ? darkTile : lightTile, { maxZoom: 18 }).addTo(map);
+  map = L.map('academic-map', { center: [20,-10], zoom: 2, scrollWheelZoom: true });
+  tileLayer = L.tileLayer(osmTile, { maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+  updateTile();
 
   var observer = new MutationObserver(function(){ updateTile(); });
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme','class'] });
