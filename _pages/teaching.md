@@ -18,12 +18,18 @@ Department of Mathematics. Tutorials, problem classes and marking.
 
 Department of Mathematics. Outstanding Teacher Award (_Maestro Destacado_), 2021.
 
-- Algebra and Geometry
-- Algebra and Calculus I
-- Calculus I
-- Linear Algebra and Calculus II
-- Calculus IV (multivariable and vector calculus, introduction to linear PDEs)
+- MAT060 Álgebra y Geometría (_Algebra and Geometry_)
+- MAT021 Álgebra y Cálculo I (_Algebra and Calculus I_)
+- MAT070 Cálculo I (_Calculus I_)
+- MAT022 Álgebra Lineal y Cálculo II (_Linear Algebra and Calculus II_)
+- MAT024 Cálculo IV (_Calculus IV_)
 
 #### Universidad Técnica Federico Santa María — Teaching Assistant (2015–2019)
 
-Partial Differential Equations, Algebra and Geometry, Mathematics I–III, Complement of Mathematics and General Physics I.
+- MAT247 Ecuaciones Diferenciales Parciales (_Partial Differential Equations_)
+- MAT060 Álgebra y Geometría (_Algebra and Geometry_)
+- MAT021 Matemática I (_Mathematics I_)
+- MAT012 Matemática II (_Mathematics II_)
+- MAT023 Matemática III (_Mathematics III_)
+- MAT009 Complemento de Matemática (_Complement of Mathematics_)
+- FIS110 Física General I (_General Physics I_)
