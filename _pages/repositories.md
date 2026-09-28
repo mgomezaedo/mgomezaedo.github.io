@@ -7,11 +7,11 @@ nav: true
 nav_order: 9
 ---
 
-{% if site.data.repositories.github_repos %}
-
-<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-start">
-  {% for repo in site.data.repositories.github_repos %}
-    {% include repository/repo.liquid repository=repo %}
-  {% endfor %}
+<div class="card mt-3 p-3">
+  <h5 class="card-title mb-1">
+    <a href="https://github.com/mgomezaedo/HJB-Hessian-Learning" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> HJB-Hessian-Learning</a>
+  </h5>
+  <p class="card-text mb-0">
+    Code for <em>Hessian-augmented Supervised Learning for Hamilton–Jacobi–Bellman PDEs</em> (<a href="https://arxiv.org/abs/2606.23827" target="_blank" rel="noopener">arXiv:2606.23827</a>).
+  </p>
 </div>
-{% endif %}
