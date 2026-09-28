@@ -7,10 +7,6 @@ profile:
   align: right
   image: prof_pic.jpg
   image_circular: false
-  more_info: >
-    <p>Huxley Building</p>
-    <p>South Kensington Campus</p>
-    <p>London, United Kingdom</p>
 nav: false
 nav_order: 1
 selected_papers: false
@@ -23,7 +19,7 @@ latest_posts:
 
 I am a final year PhD student at Imperial College London, supervised by [Dante Kalise](https://www.dkalise.net/). My research focuses on data-driven computational methods for Hamilton-Jacobi-Bellman equations arising from nonlinear optimal control problems. This involves polynomial approximation enriched with derivative information, temporal decomposition strategies based on the Dynamic Programming Principle, and connections to the Pontryagin Maximum Principle.
 
-More broadly, I am interested in optimal control, numerical analysis, scientific computing, mean field games, risk measures, and approximation theory.
+More broadly, I work in applied and computational mathematics, with interests in optimization and optimal control, partial differential equations, and numerical analysis and scientific computing. I am particularly drawn to problems that arise from real applications in science and engineering, and I enjoy working with researchers from other fields to tackle them.
 
 Before my PhD, I worked for three years as a lecturer at [Universidad Técnica Federico Santa María](https://usm.cl/) (UTFSM) in Chile.
 
