@@ -33,3 +33,7 @@ Department of Mathematics. Outstanding Teacher Award (_Maestro Destacado_), 2021
 - MAT023 Matemática III (_Mathematics III_)
 - MAT009 Complemento de Matemática (_Complement of Mathematics_)
 - FIS110 Física General I (_General Physics I_)
+
+#### Other teaching activities
+
+At UTFSM, I was part of the Department of Mathematics team that prepared _Semestre 0_, preparatory material to help incoming first-year students bridge gaps in their mathematical background during the COVID-19 pandemic (2020–2021). In 2022 I co-organised [∖Delta](https://sites.google.com/view/backslashdelta), a student-led PDE seminar in Santiago, where I also gave an outreach talk on partial differential equations and mathematical modelling for a general audience.
